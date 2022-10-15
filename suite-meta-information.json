@@ -1,0 +1,38 @@
+{
+  "testExecutionTime": "October 12, 2022 10:43 PM",
+  "profileVars": {
+    "device": {
+      "randomDeviceId": "egsshjqbdvzytelmenagmyve",
+      "test": "epkmivxxbqvbndcecfdmwxuy"
+    },
+    "endpoints": [
+      "test",
+      "/users"
+    ],
+    "firstNames": [
+      "George",
+      "Janet",
+      "Emma"
+    ],
+    "profileEndpointUsers": "/users"
+  },
+  "hooksVars": {
+    "secretValue": "***********"
+  },
+  "commonVars": {
+    "endpointUsers": "/users"
+  },
+  "globalVars": {},
+  "configVars": {
+    "defaultFormatDate": "YYYY-MM-DDTHH:mm:ss[Z]",
+    "timeout": 20000,
+    "url": "https://draf-example-server.herokuapp.com",
+    "userAccountTokens": {
+      "Catalog": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJhdWQiOiJodHRwczovL3Rlc3QuYmJjLW1hc3NpdmUuY29tL0lTTC9BcGkvVjEvRGF0YXNlcnZpY2UiLCJzdWIiOiJDYXRhbG9nIiwiZXhwIjoxNTM5NjkzMzk4LCJ1c2VyQWNjb3VudElkIjoiYTQwYjI1OTItNDNkOS00ZDA5LTlkZGMtZWUxZmUzNGNkOTM5IiwidXNlclByb2ZpbGVJZCI6ImE0MGIyNTkyLTQzZDktNGQwOS05ZGRjLWVlMWZlMzRjZDkzOSIsImVtYWlsIjoicG9zdG1hbi11c0BleGFtcGxlLmNvbSIsImRldmljZSI6IndlYl9icm93c2VyX21hYyIsInZhbGlkVW50aWwiOjE1Mzk2OTMzOTgsInN1YnNjcmlwdGlvbiI6IlN1YnNjcmliZXIiLCJwbGFuSWQiOiI0NDQ4IiwiZmluZ2VycHJpbnQiOiJEZ042UUVOZHh0dytBWjljZmt0ZHdtbExiaVNOWkVKeUVRdUFhZlp4NDh3PSIsImNsaWVudExvY2F0aW9uIjoiQ1oifQ.EtIuDdPz8ORms5NP7Yl03nOhxlodRXt2Txvl1Qbt9kzOa9L08h3znjd7UsxerZqCeGQMRynYgIIBo2vB9VEcSFS3I7YU7ifh1mLM147DQHuDB_8VbPV8bywhMmyQgu0_mdJntP93uS2mX4anV4j5NT6BLBw-UiHQqS1rTzxz-RACoM5aAzPgFpJrOAmklDaMqKb3uW-oMtNrO_c109KOz9SQcj9qGYMNCWAcyXAWKpzi5T8DM0Z2QYxNBTOYr-PptkAsrnB858wBSFBuprH2vMWyre5j4VgpD9OyEQpHUjiyRVy6fDkTyafTyJltc_gIwQIDt82W_iu2vRzN_WhSrw"
+    },
+    "userProfileTokens": {
+      "Catalog": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJhdWQiOiJodHRwczovL3Rlc3QuYmJjLW1hc3NpdmUuY29tL0lTTC9BcGkvVjEvRGF0YXNlcnZpY2UiLCJzdWIiOiJDYXRhbG9nIiwiZXhwIjoxNTM5NjkzMzk4LCJ1c2VyQWNjb3VudElkIjoiYTQwYjI1OTItNDNkOS00ZDA5LTlkZGMtZWUxZmUzNGNkOTM5IiwidXNlclByb2ZpbGVJZCI6ImE0MGIyNTkyLTQzZDktNGQwOS05ZGRjLWVlMWZlMzRjZDkzOSIsImVtYWlsIjoicG9zdG1hbi11c0BleGFtcGxlLmNvbSIsImRldmljZSI6IndlYl9icm93c2VyX21hYyIsInZhbGlkVW50aWwiOjE1Mzk2OTMzOTgsInN1YnNjcmlwdGlvbiI6IlN1YnNjcmliZXIiLCJwbGFuSWQiOiI0NDQ4IiwiZmluZ2VycHJpbnQiOiJEZ042UUVOZHh0dytBWjljZmt0ZHdtbExiaVNOWkVKeUVRdUFhZlp4NDh3PSIsImNsaWVudExvY2F0aW9uIjoiQ1oifQ.EtIuDdPz8ORms5NP7Yl03nOhxlodRXt2Txvl1Qbt9kzOa9L08h3znjd7UsxerZqCeGQMRynYgIIBo2vB9VEcSFS3I7YU7ifh1mLM147DQHuDB_8VbPV8bywhMmyQgu0_mdJntP93uS2mX4anV4j5NT6BLBw-UiHQqS1rTzxz-RACoM5aAzPgFpJrOAmklDaMqKb3uW-oMtNrO_c109KOz9SQcj9qGYMNCWAcyXAWKpzi5T8DM0Z2QYxNBTOYr-PptkAsrnB858wBSFBuprH2vMWyre5j4VgpD9OyEQpHUjiyRVy6fDkTyafTyJltc_gIwQIDt82W_iu2vRzN_WhSrw"
+    },
+    "usersUrl": "/users"
+  }
+}

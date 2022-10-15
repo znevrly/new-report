@@ -1,0 +1,103 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "request-examples;post-request-to-endpoint",
+        "keyword": "Scenario",
+        "line": 69,
+        "name": "POST request to endpoint",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1221399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 70,
+            "name": "base url is \"https://reqres.in/api\"",
+            "match": {
+              "location": "node_modules\\@deltatre-vxp\\vxpqa-draf\\steps\\given.js:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 886799
+            }
+          },
+          {
+            "arguments": [
+              {
+                "content": "{\n    \"name\": \"Average Joe\",\n    \"job\": \"killer\"\n}",
+                "line": 72
+              }
+            ],
+            "keyword": "When ",
+            "line": 71,
+            "name": "POST request to \"/users\" with body:",
+            "match": {
+              "location": "node_modules\\@deltatre-vxp\\vxpqa-draf\\steps\\when.js:63"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 244033399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 78,
+            "name": "response \"name\" is \"Average Joe\"",
+            "match": {
+              "location": "node_modules\\@deltatre-vxp\\vxpqa-draf\\steps\\then.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1013700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 79,
+            "name": "response \"job\" is \"killer1\"",
+            "match": {
+              "location": "node_modules\\@deltatre-vxp\\vxpqa-draf\\steps\\then.js:40"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 1425299,
+              "error_message": "AssertionError: Response value job: expected 'killer' to equal 'killer1'\n    + expected - actual\n\n    -killer\n    +killer1\n\n    at Object.doAssertEqual (C:\\repos\\vxpqa-draf-example\\node_modules\\@deltatre-vxp\\vxpqa-draf\\steps-impl\\steps-impl-common.js:92:10)\n    at Object.responseValue (C:\\repos\\vxpqa-draf-example\\node_modules\\@deltatre-vxp\\vxpqa-draf\\steps-impl\\response-impl.js:47:12)\n    at customWorld.<anonymous> (C:\\repos\\vxpqa-draf-example\\node_modules\\@deltatre-vxp\\vxpqa-draf\\steps\\then.js:41:6)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3280200
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@fuck2",
+            "line": 68
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "request-examples",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Request examples",
+    "tags": [],
+    "uri": "features\\request.feature"
+  }
+]

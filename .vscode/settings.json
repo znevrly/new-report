@@ -1,0 +1,14 @@
+{
+    "cucumberautocomplete.steps": [
+        "lib/**/*.js",
+        "node_modules/@deltatre-vxp/vxpqa-draf/steps/*.js"
+    ],
+    
+    "cucumberautocomplete.syncfeatures": "features/*feature",
+    
+    "editor.quickSuggestions": {
+        "comments": false,
+        "strings": true,
+        "other": true
+    }
+}

@@ -1,0 +1,62 @@
+<a href="#" id="toggleNavigator" style="padding: 0px"
+  class="navbar-nav-link sidebar-control sidebar-main-hide d-none d-md-block" data-popup="tooltip-demo"
+  title="Hide navigator" data-placement="bottom" data-container="body" data-trigger="hover">
+</a>
+
+<div class="text-muted" style="font-size: 11px; padding-left: 12px; padding-top: 4px">Use key "n" hide/display navigator
+</div>
+
+<div style="padding: 10px;">
+  <button type="button" class="btn btn-light" style="width: 300px" id="summary-button">Summary</button>
+</div>
+
+<div style="padding: 10px">
+  <select class="custom-select" id="featureSelector">
+    <option value="1" selected>Failed features ({{data.failedFeatures.length}}) </option>
+    <option value="2">All features ({{data.features.length}})</option>
+  </select>
+</div>
+
+<div style="padding: 10px">
+  <input type="text" class="form-control" placeholder="filter features [press Esc to reset]" id="filter-features">
+</div>
+
+<div id="nav-failed-features">
+  <ul class="nav nav-sidebar" data-nav-type="accordion">
+    {% for failedFeature in data.failedFeatures %}
+      <li class="nav-item nav-item-submenu">
+        <a href="#" class="nav-link"><span>{{failedFeature.nav_name}} <span style="font-weight:300">({{failedFeature.failedScenariosCount}})</span></span></a>
+        <ul class="nav nav-group-sub" data-submenu-title="{{failedFeature.name}}">
+            {% for failedScenario in failedFeature.elements %}
+                {% if failedScenario.status === 'failed' %}
+                  <li class="nav-item"><a href="#" class="nav-link" id="scenario-link-{{failedScenario.selectorId}}">{{failedScenario.name}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div id="nav-all-features">
+  <ul class="nav nav-sidebar" data-nav-type="accordion">
+    {% for feature in data.features %}
+    <li class="nav-item nav-item-submenu">
+      <a href="#" class="nav-link"><span id="selected-feature-title-{{feature.selectorId}}">{{feature.nav_name}}</span></a>
+      <ul class="nav nav-group-sub" data-submenu-title="{{feature.name}}">
+        <li class="nav-item">
+          <a href="#" class="nav-link" id="scenario-link-{{feature.selectorId}}">
+            {% if feature.status === 'success' %}
+              <span class="badge badge-success">{{feature.status}}</span>
+            {% endif %}
+            {% if feature.status == 'failed' %}
+              <span class="badge badge-danger">{{feature.status}}</span>
+            {% endif %}
+            &nbsp;{{feature.name}}
+          </a>
+        </li>
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

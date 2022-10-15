@@ -1,0 +1,49 @@
+{
+  "failedScenariosLocations": [
+    {
+      "feature": "request",
+      "scenario": "POST request to endpoint"
+    }
+  ],
+  "failedScenarios": {
+    "request;post-request-to-endpoint": {
+      "lastRequestBody": {
+        "name": "Average Joe",
+        "job": "killer"
+      },
+      "isJsonResponse": true,
+      "inlineRespodyBody": true,
+      "lastResponseBody": {
+        "name": "Average Joe",
+        "job": "killer",
+        "id": "532",
+        "createdAt": "2022-10-12T20:42:42.922Z"
+      },
+      "lastRequestMethod": "POST",
+      "lastRequestUrl": "https://reqres.in/api/users",
+      "lastRequestHeaders": {
+        "Content-Type": "application/json",
+        "User-Agent": "Deltatre Rest API framework"
+      },
+      "lastResponseHeaders": {
+        "access-control-allow-origin": "*",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "7592a9e1dfce915f-FRA",
+        "connection": "close",
+        "content-length": "87",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 12 Oct 2022 20:42:42 GMT",
+        "etag": "W/\"57-z4bScx7JTcIqAUoRNh+BQXD6cGI\"",
+        "nel": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+        "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=%2BzLK6DwD%2FdbItTIPcox0%2Bjr21qoYcgNc3MD6CtWD%2FjVSG9t7DhEZk4aHdJZ2nHoxCS0DDecU19nfoMiIbaV7CqtjSvU%2B3rHAw%2BYB3je0n7B%2Bp%2BmWpVD9hhMA2g%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+        "server": "cloudflare",
+        "via": "1.1 vegur",
+        "x-powered-by": "Express"
+      },
+      "localVars": {},
+      "localHookVars": {},
+      "expressionReplacements": {},
+      "rawScenarioLogPath": "./logs/request/post-request-to-endpoint.log"
+    }
+  }
+}

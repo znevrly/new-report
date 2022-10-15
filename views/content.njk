@@ -1,0 +1,364 @@
+<div id="summary">
+			<div class="page-header" style="margin-top: 20px">
+						<h3>{{title}}</h3>
+			</div>
+
+    <div class="card">
+      <div class="card-body">
+          <div class="row text-center">
+            <div class="col-4">
+              <div class="mb-3">
+                <h5 class="font-weight-semibold mb-0">{{data.suiteMetaInformation.testExecutionTime}}</h5>
+                <span class="text-muted font-size-sm">test execution time</span>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="mb-3">
+                <h5 class="font-weight-semibold mb-0">{{data.metainformation.be_version}}</h5>
+                <span class="text-muted font-size-sm">backend version</span>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="mb-3">
+                <h5 class="font-weight-semibold mb-0">{{data.metainformation.profile}}</h5>
+                <span class="text-muted font-size-sm">profile</span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+          <h5 class="card-title">Summary</h5>
+          <div class="header-elements">
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="chart-container text-center mb-3">
+                <div class="d-inline-block" id="piechart_features"></div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="chart-container text-center mb-3">
+                <div class="d-inline-block" id="piechart_scenarios"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+          <h5 class="card-title">Steps Summary</h5>
+          <div class="header-elements">
+          </div>
+        </div>
+
+        <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Step Result</th>
+                        <th>Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Passed</td>
+                        <td><span class="badge badge-success">{{data.stepsSummaryPassed}}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Failed</td>
+                        <td><span class="badge badge-danger">{{data.stepsSummaryFailed}}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Skipped</td>
+                        <td><span class="badge badge-warning">{{data.stepsSummarySkipped}}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Undefined</td>
+                        <td><span class="badge badge-secondary">{{data.stepsSummaryUndefined}}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div id="selected-scenario" style="margin-top: 20px"> 
+</div>
+
+<div id="all-features" style="margin-top: 20px">
+        {% for feature in data.features %}
+          {% for scenario in feature.elements  %}
+            <div id="{{scenario.selectorId}}">
+                <div class="card">
+                  <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                      <strong>Scenario</strong>: <span id="scenario-title-{{scenario.selectorId}}">{{scenario.name}}</span></h5>
+                  </div>
+                  <div class="card-body">
+                      {% if scenario.tags %}
+                        <div style="padding: 0px 0px 10px">
+                              <strong>Tags</strong> &nbsp;&nbsp;
+                              {% for tag in scenario.tags %}
+                                  <span class="badge badge-light">&nbsp;{{tag.name}}&nbsp;</span>
+                              {% endfor %}
+                        </div>
+                      {% endif %}
+
+                      <table width="100%" border="0">
+                        <tr>
+                          <th style="width: 20px"></th>
+                          <th></th>
+                          <th style="width: 150px;"></th>
+                        </tr>
+                        {% for step in scenario.steps %}
+                          <tr>
+                            <td>
+                                {% if step.result.status === 'passed' %}
+                                  <span class="badge badge-success">P</span>
+                                {% endif %}
+                                {% if step.result.status === 'failed' %}
+                                  <span class="badge badge-danger">F</span>
+                                {% endif %}
+                                {% if step.result.status === 'skipped' %}
+                                  <span class="badge badge-warning">S</span>
+                                {% endif %}
+                                {% if step.result.status === 'undefined' %}
+                                  <span class="badge badge-secondary">U</span>
+                                {% endif %}
+                            </td>
+                            <td style="padding-left: 10px; padding-top: 2px"> {{step.keyword}} {{step.name}} 
+                                {% if step.arguments === 'undefined' %}
+                                    {{step.arguments}}
+                                {% endif %}
+                            </td>
+                            <td style="text-align: right"> <span class="text-muted">{{step.durationFormatted}} </span></td>
+                          </tr> 
+                          {% if step.error_message %}
+                            <tr>
+                              <td colspan="3">
+                                <pre style="font-size:11px; margin-top: 10px; margin-bottom: 10px; border: 0">{{step.error_message}}</pre>
+                              </td>
+                            </tr> 
+                          {% endif %}
+                        {% endfor %}
+                      </table>
+
+                      {% if feature.status === 'failed' %}
+                        <div style="padding-top: 20px" id="info">
+                          <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="#nav-body" class="nav-link legitRipple active show" data-toggle="tab">Body</a>
+                            </li>  
+                            <li class="nav-item"> 
+                              <a href="#nav-headers" class="nav-link legitRipple" data-toggle="tab">
+                                  Headers 
+                                  <span class="tabCount">
+                                    ({{scenario.metaInformation.lastRequestHeaders | length}}/{{scenario.metaInformation.lastResponseHeaders | length}})
+                                  <span>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="#nav-hook-variables" class="nav-link legitRipple" data-toggle="tab">
+                                  Hook vars 
+                                  <span class="tabCount">
+                                    ({{data.suiteMetaInformation.hooksVars | length}})
+                                  </span>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="#nav-global-variables" class="nav-link" data-toggle="tab">
+                                Global vars
+                                  <span nav-global-variablesclass="tabCount">
+                                    ({{data.suiteMetaInformation.globalVars | length}})
+                                  </span>
+                              </a>
+                            </li>  
+                            <li class="nav-item">
+                              <a href="#nav-logs" class="nav-item nav-link" data-toggle="tab">Log</a>
+                            </li>  
+                            {% if scenario.metaInformation.lastSnapshotActual %}
+                              <li class="nav-item">
+                                <a href="#nav-snapshot" class="nav-item nav-link" data-toggle="tab">Snapshot</a>
+                              </li>  
+                            {% endif %}
+                          </ul>
+                          <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-body" role="tabpanel" aria-labelledby="nav-body">
+                              <div class="tab-body">
+                                <div>{{scenario.metaInformation.lastRequestMethod}}
+                                    <a href="{{scenario.metaInformation.lastRequestUrl}}" target="_blank">{{scenario.metaInformation.lastRequestUrl}}</a>
+                                </div>
+                                {% if scenario.metaInformation.lastRequestBody %}
+                                  <div>&nbsp;</div>
+                                  <h6>Request body</h6>
+                                  <pre style="font-size: 11px">{{scenario.metaInformation.lastRequestBody | json}}</pre>
+                                {% endif %}
+                                  <div>&nbsp;</div>
+                                  <h6>Response body</h6>
+                                  {% if scenario.metaInformation.inlineRespodyBody %}
+                                      <pre style="font-size: 11px">{{scenario.metaInformation.lastResponseBody | json }}</pre>
+                                  {% else %}
+                                      Response is too large, please use <a href="../{{scenario.metaInformation.largeResponseFile}}" target="_blank">link to display response</a> 
+                                  {% endif %}
+                              </div> 
+                            </div>
+                            <div class="tab-pane fade show" id="nav-headers" role="tabpanel" aria-labelledby="nav-headers-tab">
+                              <div class="tab-body">
+                                <h5>Request</h5>
+                                {% if scenario.metaInformation.lastRequestHeaders %}
+                                  <table class="table">
+                                    <thead class="thead-light">
+                                      <tr>
+                                        <th scope="col">Key</th>
+                                        <th scope="col">Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for key, value in scenario.metaInformation.lastRequestHeaders %}  
+                                      <tr>
+                                        <td>{{key}}</td>
+                                        <td>{{value}}</td> 
+                                      </tr>
+                                    {% endfor %}
+                                    </tbody>  
+                                  </table>
+                                {% else %}
+                                  No request headers defined.
+                                {% endif %}
+                              
+                                <div style="padding: 10px">&nbsp;</div>
+
+                                <h5>Response</h5>
+                                {% if scenario.metaInformation.lastResponseHeaders %}
+                                    <table class="table">
+                                      <thead class="thead-light">
+                                        <tr>
+                                          <th scope="col">Key</th>
+                                          <th scope="col">Value</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      {% for key, value in scenario.metaInformation.lastResponseHeaders %}  
+                                        <tr>
+                                          <td>{{key}}</td>
+                                          <td>{{value}}</td> 
+                                        </tr>
+                                      {% endfor %}
+                                      </tbody>  
+                                    </table>
+                                {% else %}
+                                  No response headers defined.
+                                {% endif %}
+                              </div>  
+                            </div>
+                            <div class="tab-pane fade" id="nav-hook-variables" role="tabpanel" aria-labelledby="nav-hook-variables">
+                              <div class="tab-body">
+                                  <h5>Before All Hooks Variables</h5>
+                                  <table class="table">
+                                    <thead class="thead-light">
+                                      <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for key, value in scenario.metaInformation.hooksVars %}  
+                                        <tr>
+                                          <td>{{key}}</td>
+                                          <td>{{value}}</td> 
+                                        </tr>
+                                      {% endfor %}
+                                    </tbody>  
+                                  </table>
+
+                                <div>&nbsp;</div>
+
+                                  <h5>Before Hooks Variables</h5>
+                                  <table class="table">
+                                    <thead class="thead-light">
+                                      <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Value</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for key, value in scenario.metaInformation.localHookVars %}  
+                                        <tr>
+                                          <td>{{key}}</td>
+                                          <td>{{value}}</td> 
+                                        </tr>
+                                      {% endfor %}
+                                    </tbody>  
+                                  </table>
+                              </div> 
+                            </div>
+                            <div class="tab-pane fade" id="nav-global-variables" role="tabpanel" aria-labelledby="nav-global-variables">
+                              <div class="tab-body">
+                                  <table class="table">
+                                    <thead class="thead-light">
+                                      <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Scenario</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for key, value in scenario.metaInformation.globalVars %}  
+                                        <tr>
+                                          <td>{{key}}</td>
+                                          <td>{{value}}</td> 
+                                          <td>{{variable}}</td>
+                                      </tr>
+                                      {% endfor %}
+                                    </tbody>  
+                                  </table>
+                              </div> 
+                            </div>
+                            <div class="tab-pane fade" id="nav-logs" role="tabpanel" aria-labelledby="nav-logs">
+                              <div class="tab-body">
+                                <h6>Raw log</h6>
+                                <a href="../{{scenario.metaInformation.rawScenarioLogPath}}" target="_blank">{{scenario.metaInformation.rawScenarioLogPath}}</a>
+                                <br /><br />
+                              </div> 
+                            </div>
+                            {% if scenario.metaInformation.lastSnapshotActual %}
+                              <div class="tab-pane fade" id="nav-snapshot" role="tabpanel" aria-labelledby="nav-snapshot">
+                                <div class="tab-body">
+                                  <div class="row">
+                                    <div class="col-sm-6">Actual snapshot<pre>{{scenario.metaInformation.lastSnapshotActual}}</pre></div>
+                                    <div class="col-sm-6">Expected snapshot<pre>{{scenario.metaInformation.lastSnapshotExpected}}</pre></div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-12">&nbsp;</div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-12">Unified diff <div id="visual"></div> </div>
+                                  </div>
+                                  <script>
+                                      delta = jsondiffpatch.diff({{element.metaInformation.lastSnapshotActual}}, {{element.metaInformation.lastSnapshotExpected}});
+                                      $('#visual').html(jsondiffpatch.formatters.html.format(delta, {{element.metaInformation.lastSnapshotExpected}})); 
+                                  </script>    
+                                </div> 
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>
+                    {% endif %}
+                  </div>  
+                </div>
+            </div>
+          {% endfor %}
+        {% endfor %}
+</div>
